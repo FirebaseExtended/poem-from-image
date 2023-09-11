@@ -15,6 +15,7 @@ import {
   collection,
   addDoc
 } from "firebase/firestore";
+import { Link } from "react-router-dom";
 
 function UploadProgress({ uploadTask, storageRef }: { uploadTask: UploadTask, storageRef: StorageReference }) {
   const { status, data: uploadProgress } = useStorageTask<UploadTaskSnapshot>(uploadTask, storageRef);
@@ -42,7 +43,7 @@ function PoemImage({imagePath}: {imagePath: string}) {
     return <span>...</span>
   }
 
-  return <img src={imageURL}/>;
+  return <img className="w-24 h-24 p-2" src={imageURL}/>;
 }
 
 function ImageGrid() {
@@ -55,9 +56,11 @@ function ImageGrid() {
     return <p>Loading images...</p>
   }
 
-  return data.map(poem => {
-    return <PoemImage key={poem.poemId} imagePath={poem.image} />
-  })
+  return (
+    <div className="flex flex-wrap">{data.map(poem => {
+      return <Link to={`poems/${poem.poemId}`}><PoemImage key={poem.poemId} imagePath={poem.image} /></Link>
+    })}</div>
+  )
 }
 
 function App() {

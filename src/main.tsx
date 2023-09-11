@@ -28,6 +28,10 @@ const router = createBrowserRouter([
       },
       {
         path: "poems/:poemId",
+        loader: async ({params}) => {
+          console.log(params);
+          return {poemId: params.poemId};
+      },
         element: <DisplayPoem />,
       },
     ],
