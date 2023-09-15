@@ -25,7 +25,7 @@ function DisplayPoem() {
     if (status === 'loading') {
         return <span>Loading...</span>
     }
-    return <><h1>Here is a poem</h1><PoemImage imagePath={data.image}></PoemImage><pre>{JSON.stringify(data, null, 2)}</pre></>
+    return <><PoemImage imagePath={data.image}></PoemImage><pre>{JSON.stringify(data, null, 2)}</pre></>
 }
 
 export default DisplayPoem;
