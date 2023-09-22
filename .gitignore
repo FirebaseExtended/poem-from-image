@@ -4,3 +4,5 @@ node_modules/**
 
 dist/**
 .firebase/hosting.**.cache
+
+mock-functions/node_modules/**

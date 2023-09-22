@@ -1,7 +1,14 @@
 {
-  "functions": {
-    "source": "functions"
-  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "python-demo"
+    },
+    {
+      "source": "mock-functions",
+      "codebase": "node-mocks"
+    }
+  ],
   "storage": {
     "rules": "storage.rules"
   },
