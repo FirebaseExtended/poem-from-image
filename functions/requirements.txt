@@ -1,2 +1,4 @@
 firebase_functions~=0.1.0
-firebase-admin
+firebase_admin==6.2.0
+google-cloud==0.34.0
+google-cloud-aiplatform==1.33.1
