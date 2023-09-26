@@ -1,14 +1,4 @@
 {
-  "functions": [
-    {
-      "source": "functions",
-      "codebase": "python-demo"
-    },
-    {
-      "source": "mock-functions",
-      "codebase": "node-mocks"
-    }
-  ],
   "storage": {
     "rules": "storage.rules"
   },
@@ -50,5 +40,17 @@
       "enabled": true
     },
     "singleProjectMode": true
-  }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "venv",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ]
+    }
+  ]
 }
