@@ -3,7 +3,6 @@ import { Button } from "./components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
-
 export default function LogIn() {
     const auth = useAuth();
     const {data} = useUser();
@@ -11,5 +10,11 @@ export default function LogIn() {
     if (data) {
         navigate("/", {relative: 'path'});
     }
-    return <><h1>Log In</h1><Button onClick={() => signInWithPopup(auth, new GoogleAuthProvider())}>Sign in</Button></>
+    return (
+        <>
+            <div className="login-group flex items-center justify-center">
+                <Button onClick={() => signInWithPopup(auth, new GoogleAuthProvider())}>Sign in</Button>
+            </div>
+        </>
+    );
 }
