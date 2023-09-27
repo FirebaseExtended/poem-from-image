@@ -8,6 +8,7 @@ import {
 } from "reactfire";
 import { ref as createStorageRef } from "firebase/storage";
 import { Skeleton } from "./components/ui/skeleton";
+
 function PoemImage({ imagePath }: { imagePath: string }) {
   const storage = useStorage();
   const { status, data: imageURL } = useStorageDownloadURL(
@@ -25,9 +26,11 @@ function PoemImage({ imagePath }: { imagePath: string }) {
   );
 }
 
+/*
 function PoemTitle({ title }: { title: string }) {
   return;
 }
+*/
 
 function DisplayPoem() {
   const { poemId } = useLoaderData() as { poemId: string };
