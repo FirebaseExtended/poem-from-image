@@ -28,16 +28,17 @@ def generate_poem_from_image(event: firestore_fn.Event[firestore_fn.DocumentSnap
   bucket = storage.bucket("poem-from-image.appspot.com")
   image_bytes = bucket.blob(image_path).download_as_bytes()
   vertex_image = vertexai.vision_models.Image(image_bytes)
+  doc_ref.update(
+    {"status": "IMAGE_DOWNLOADED"})
 
   # Generate captions from the image bytes and update status
   caption_model = ImageCaptioningModel.from_pretrained("imagetext@001")
-  doc_ref.update({"status": "CAPTIONING_STARTED"})
   captions = caption_model.get_captions(
     image=vertex_image,
     number_of_results=1,
     language="en")
   doc_ref.update(
-    {"status": "CAPTIONING_COMPLETE",
+    {"status": "CAPTION_COMPLETE",
     "caption": captions[0]})
 
   # Generate a poem from the image captions and update status
