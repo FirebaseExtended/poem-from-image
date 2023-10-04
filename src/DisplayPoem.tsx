@@ -25,10 +25,6 @@ function PoemImage({ imagePath }: { imagePath: string }) {
   );
 }
 
-function PoemTitle({ title }: { title: string }) {
-  return;
-}
-
 function DisplayPoem() {
   const { poemId } = useLoaderData() as { poemId: string };
 
