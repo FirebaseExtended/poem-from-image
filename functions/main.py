@@ -8,9 +8,7 @@ from vertexai.vision_models import ImageCaptioningModel, Image
 app = initialize_app()
 
 # Initialize Vertex AI
-PROJECT_ID = "poem-from-image" 
-REGION = "us-central1"
-vertexai.init(project=PROJECT_ID, location=REGION)
+vertexai.init(project="poem-from-image", location="us-central1")
 
 # Listen to the poems Firestore collection for document creation
 @firestore_fn.on_document_created(document="poems/{poemId}")
@@ -37,7 +35,7 @@ def generate_poem_from_image(event: firestore_fn.Event[firestore_fn.DocumentSnap
   text_model = TextGenerationModel.from_pretrained("text-bison")
   poem = text_model.predict(
       prompt=f"Write a poem about the following image caption: {captions[0]}",
-      temperature=0.9,
+      temperature=1.0,
       max_output_tokens=256)
   doc_ref.update(
     {"status": "FINISHED",
