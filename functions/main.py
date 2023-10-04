@@ -11,6 +11,8 @@ vertexai.init(project="poem-from-image", location="us-central1")
 # Listen to the poems Firestore collection for document creation
 @firestore_fn.on_document_created(document="poems/{poemId}")
 def generate_poem_from_image(event: firestore_fn.Event[firestore_fn.DocumentSnapshot]):
+
+# Save references to the document, image, and bucket
   doc_ref = event.data.reference
   image_path = event.data.get("image")
   bucket = storage.bucket("poem-from-image.appspot.com")
