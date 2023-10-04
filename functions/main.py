@@ -4,10 +4,8 @@ import vertexai
 from vertexai.language_models import TextGenerationModel
 from vertexai.vision_models import ImageCaptioningModel, Image
 
-# Initialize app
-app = initialize_app()
-
-# Initialize Vertex AI
+# Initialize Firebase app and Vertex AI
+initialize_app()
 vertexai.init(project="poem-from-image", location="us-central1")
 
 # Listen to the poems Firestore collection for document creation
