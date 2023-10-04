@@ -25,9 +25,7 @@ def generate_poem_from_image(event: firestore_fn.Event[firestore_fn.DocumentSnap
     image=vertex_image,
     number_of_results=1,
     language="en")
-  doc_ref.update(
-    {"status": "CAPTION_COMPLETE",
-    "caption": captions[0]})
+  doc_ref.update({"caption": captions[0]})
 
   # Generate a poem from the image captions and update status
   text_model = TextGenerationModel.from_pretrained("text-bison")
@@ -35,6 +33,4 @@ def generate_poem_from_image(event: firestore_fn.Event[firestore_fn.DocumentSnap
       prompt=f"Write a poem about the following image caption: {captions[0]}",
       temperature=1.0,
       max_output_tokens=256)
-  doc_ref.update(
-    {"status": "FINISHED",
-    "poem": poem.text})
+  doc_ref.update({"poem": poem.text})

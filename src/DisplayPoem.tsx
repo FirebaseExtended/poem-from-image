@@ -42,15 +42,11 @@ function DisplayPoem() {
 
   let poemComponent;
 
-  if (data.status === "FINISHED") {
+  if (data.poem != "") {
     poemComponent = (<>{data.poem.split("\n").map((stanza: string, i: number) => !stanza ? <br key={i}/> : <p className="text-lg font-medium" key={i}>{stanza}</p>)}</>)
   } else {
     poemComponent = <div>{[1,2,3].map(i => <Skeleton key={i} className="m-4 h-4 w-96"/>)}</div>
   }
-
-  if (data.status === "CAPTION_COMPLETE") console.log(data.status);
-
-  if (data.status === "IMAGE_DOWNLOADED") console.log(data.status);
 
   return (
     <div className="overflow-auto">

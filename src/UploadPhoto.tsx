@@ -80,9 +80,8 @@ export default function UploadPhoto() {
 
     const newDoc = await addDoc(collection(firestore, "poems"), {
       image: newRef.fullPath,
-      caption: "placeholder",
-      poem: "placeholder",
-      status: "NOT_STARTED",
+      caption: "",
+      poem: "",
       user: (user as User).uid,
     });
 
