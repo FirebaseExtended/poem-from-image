@@ -50,7 +50,7 @@ function DisplayPoem() {
 
   return (
     <div className="overflow-auto">
-      <div className="flex items-center">
+      <div className="flex justify-center">
         <PoemImage imagePath={data.image} />
       </div>
       <div className="p-4">
