@@ -8,6 +8,7 @@ import {
 } from "reactfire";
 import { ref as createStorageRef } from "firebase/storage";
 import { Skeleton } from "./components/ui/skeleton";
+
 function PoemImage({ imagePath }: { imagePath: string }) {
   const storage = useStorage();
   const { status, data: imageURL } = useStorageDownloadURL(
@@ -39,29 +40,18 @@ function DisplayPoem() {
     return "no data";
   }
 
-  let titleComponent, poemComponent;
+  let poemComponent;
 
-  if (!data.status || data.status === "CAPTIONING_STARTED") {
-    titleComponent = <div className="flex-grow"><Skeleton className="m-4 h-8 w-80"/><Skeleton className="m-4 h-8 w-80"/></div>;
-  } else {
-    titleComponent = (<h2 className="flex-grow font-extrabold italic text-3xl text-slate-900 p-4">
-    I am a title
-  </h2>)
-  }
-
-  if (data.status === "FINISHED") {
+  if (data.poem != "") {
     poemComponent = (<>{data.poem.split("\n").map((stanza: string, i: number) => !stanza ? <br key={i}/> : <p className="text-lg font-medium" key={i}>{stanza}</p>)}</>)
   } else {
     poemComponent = <div>{[1,2,3].map(i => <Skeleton key={i} className="m-4 h-4 w-96"/>)}</div>
   }
 
-  if (data.status === "CAPTIONING_COMPLETE") console.log(data.status);
-
   return (
     <div className="overflow-auto">
-      <div className="flex items-center">
+      <div className="flex justify-center">
         <PoemImage imagePath={data.image} />
-        {titleComponent}
       </div>
       <div className="p-4">
         {poemComponent}

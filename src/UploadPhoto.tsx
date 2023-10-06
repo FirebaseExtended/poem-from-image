@@ -67,6 +67,7 @@ export default function UploadPhoto() {
       return;
     }
 
+    // Get the user's UID.
     const fileToUpload = fileList[0];
     const fileName = fileToUpload.name;
     const newRef = createStorageRef(storage, `images/${fileName}`);
@@ -79,6 +80,8 @@ export default function UploadPhoto() {
 
     const newDoc = await addDoc(collection(firestore, "poems"), {
       image: newRef.fullPath,
+      caption: "",
+      poem: "",
       user: (user as User).uid,
     });
 
