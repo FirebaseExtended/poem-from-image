@@ -22,15 +22,9 @@ import {
   StorageProvider,
 } from "reactfire";
 import LogIn from "./LogIn.tsx";
+import { getFirebaseConfig } from "./firebaseConfig.ts";
 
-const firebaseApp = initializeApp({
-  apiKey: "AIzaSyBrC8XPP3Car005B7i0UoA8POwGQPHO1zc",
-  authDomain: "poem-from-image.firebaseapp.com",
-  projectId: "poem-from-image",
-  storageBucket: "poem-from-image.appspot.com",
-  messagingSenderId: "169553295103",
-  appId: "1:169553295103:web:b358c42b11c545f8d4beca",
-});
+const firebaseApp = initializeApp(getFirebaseConfig);
 
 const router = createBrowserRouter([
   {
